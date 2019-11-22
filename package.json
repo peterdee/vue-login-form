@@ -1,12 +1,28 @@
 {
   "name": "vue-login-form",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "author": "Peter Dyumin",
+  "description": "Login form with Vue",
   "private": true,
+  "license": "ISC",
+  "main": "src/main.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "engines": {
+    "node": "13.1.0",
+    "npm": "6.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterdee/vue-login-form"
+  },
+  "keywords": [
+    "Vue",
+    "Login form"
+  ],
   "dependencies": {
     "core-js": "^3.3.2",
     "vue": "^2.6.10"
