@@ -1,4 +1,6 @@
 <template>
+<div class="centered">
+  <transition name="fade" appear>
   <form class="col-12" @submit="handleSubmit">
     <div class="form-group">
       <v-input
@@ -26,12 +28,19 @@
       text="Submit"
       type="submit"
     />
-    <transition name="fade">
-      <div v-if="generalError" class="general-error mt-3">
-        {{ generalError }}
-      </div>
-    </transition>
+    <div class="mt-2 error-container">
+      <transition name="fade">
+        <div v-if="generalError" class="text-danger text-center">
+          {{ generalError }}
+        </div>
+      </transition>
+    </div>
   </form>
+  </transition>
+  <router-link class="mt-3" to="/">
+    Back
+  </router-link>
+</div>
 </template>
 
 <script>
@@ -102,14 +111,21 @@
 </script>
 
 <style scoped>
+.centered {
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .75s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
-.general-error {
-  text-align: center;
-  color: red;
+.error-container {
+  height: 25px;
 }
 </style>

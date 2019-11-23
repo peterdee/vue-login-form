@@ -7,7 +7,7 @@
     </transition>
     <router-link to="/login">
       <button
-        class="mt-3 btn btn-success button"
+        class="mt-3 btn btn-outline-success button"
         type="button"
       >
         Login
@@ -40,5 +40,15 @@ export default { name: 'Index' };
 .title {
   font-size: 36px;
   font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #0ff,
+    0 0 80px #0ff,
+    0 0 90px #0ff,
+    0 0 100px #0ff,
+    0 0 150px #0ff;
 }
 </style>
