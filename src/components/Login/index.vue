@@ -3,7 +3,7 @@
     <div class="form-group">
       <v-input
         v-bind:disabled="isLoading"
-        v-bind:isInvalid="emailIsEmpty"
+        v-bind:status="emailStatus"
         name="email"
         placeholder="Email"
         type="email"
@@ -13,7 +13,7 @@
     <div class="form-group">
       <v-input
         v-bind:disabled="isLoading"
-        v-bind:isInvalid="passwordIsEmpty"
+        v-bind:status="passwordStatus"
         name="password"
         placeholder="Password"
         type="password"
@@ -46,12 +46,11 @@
     },
     data: () => ({
       email: '',
-      emailIsEmpty: false,
-      emailIsOk: false,
+      emailStatus: '',
       generalError: '',
       isLoading: false,
       password: '',
-      passwordIsEmpty: false,
+      passwordStatus: '',
       passwordIsOk: false,
     }),
     methods: {
@@ -60,13 +59,15 @@
         const { email, password } = this;
         if (!(email && password)) {
           this.generalError = 'Please provide your Email and Password!';
-          this.emailIsEmpty = !this.email;
-          this.passwordIsEmpty = !this.password;
+          this.emailStatus = this.email ? 'valid' : 'invalid';
+          this.passwordStatus = this.password ? 'valid' : 'invalid';
           return;
         }
 
+        this.emailStatus = 'valid';
+        this.passwordStatus = 'valid';
         this.isLoading = true;
-
+        
         try {
           await axios({
             data: {
@@ -77,13 +78,11 @@
             url: 'http://localhost:9000/api/login',
           });
           this.isLoading = false;
-
-          return alert('OK');
         } catch (error) {
-          this.emailIsOk = false;
+          this.emailStatus = '';
           this.generalError = 'Access denied!';
           this.isLoading = false;
-          this.passwordIsOk = false;
+          this.passwordStatus = '';
           return;
         }
       },
@@ -91,14 +90,12 @@
     name: "Login",
     watch: {
       email() {
-        this.emailIsEmpty = false;
-        this.emailIsOk = false;
+        this.emailStatus = '';
         this.generalError = '';
       },
       password() {
         this.generalError = '';
-        this.passwordIsEmpty = false;
-        this.passwordIsOk = false;
+        this.passwordStatus = '';
       },
     },
   };
