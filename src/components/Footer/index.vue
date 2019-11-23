@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-center">
+  <footer class="text-center noselect">
     <small>
       <a href="https://github.com/peterdee">Peter Dyumin</a>, 2019
     </small>

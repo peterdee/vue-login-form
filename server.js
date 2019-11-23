@@ -12,9 +12,26 @@ const user = {
   password: 'qwerty123',
 };
 
+// handle dashboard request
+const dashboardRouter = new Router();
+dashboardRouter.get('/api/dashboard', async (ctx) => {
+  // delay response
+  const delayedData = new Promise(
+    resolve => setTimeout(() => resolve({ email: user.email, name: user.name }), 3000),
+  );
+  const data = await delayedData;
+  ctx.status = 200;
+  ctx.body = {
+    data,
+    info: 'OK',
+    status: ctx.status,
+  };
+  return ctx.body;
+});
+
 // handle login request
 const loginRouter = new Router();
-loginRouter.post('/api/login', (ctx) => {
+loginRouter.post('/api/login', async (ctx) => {
   const { email, password } = ctx.request.body;
   if (!(email && password)) {
     ctx.status = 400;
@@ -24,6 +41,10 @@ loginRouter.post('/api/login', (ctx) => {
     };
     return ctx.body;
   }
+  
+  // delay response
+  const delay = new Promise(resolve => setTimeout(() => resolve(), 2000));
+  await delay;
 
   if (email !== user.email || password !== user.password) {
     ctx.status = 401;
@@ -51,6 +72,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(serve(`${__dirname}/dist`));
 }
 
+app.use(dashboardRouter.routes());
 app.use(loginRouter.routes());
 
 // launch the server

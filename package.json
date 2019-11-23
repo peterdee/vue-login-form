@@ -1,6 +1,6 @@
 {
   "name": "vue-login-form",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "author": "Peter Dyumin",
   "description": "Login form with Vue",
   "private": true,
@@ -22,8 +22,9 @@
     "url": "git+https://github.com/peterdee/vue-login-form"
   },
   "keywords": [
+    "Login form",
     "Vue",
-    "Login form"
+    "Vue Router"
   ],
   "dependencies": {
     "@koa/cors": "^2.2.3",

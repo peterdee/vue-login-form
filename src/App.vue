@@ -11,6 +11,7 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 
 import Footer from './components/Footer';
 
