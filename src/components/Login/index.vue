@@ -1,51 +1,55 @@
 <template>
-<div class="centered">
-  <transition name="fade" appear>
-  <form class="col-12" @submit="handleSubmit">
-    <div class="form-group">
-      <v-input
-        v-bind:disabled="isLoading"
-        v-bind:status="emailStatus"
-        name="email"
-        placeholder="Email"
-        type="email"
-        v-model="email"
-      />
-    </div>
-    <div class="form-group">
-      <v-input
-        v-bind:disabled="isLoading"
-        v-bind:status="passwordStatus"
-        name="password"
-        placeholder="Password"
-        type="password"
-        v-model="password"
-      />
-    </div>
-    <v-button
-      v-bind:generalError="generalError"
-      v-bind:isLoading="isLoading"
-      text="Submit"
-      type="submit"
-    />
-    <div class="mt-2 error-container">
-      <transition name="fade">
-        <div v-if="generalError" class="text-danger text-center">
-          {{ generalError }}
+  <div class="centered">
+    <transition name="fade" appear>
+      <form class="col-12" @submit="handleSubmit">
+        <div class="form-group">
+          <v-input
+            v-bind:disabled="isLoading"
+            v-bind:status="emailStatus"
+            name="email"
+            placeholder="Email"
+            type="email"
+            v-model="email"
+          />
         </div>
+        <div class="form-group">
+          <v-input
+            v-bind:disabled="isLoading"
+            v-bind:status="passwordStatus"
+            name="password"
+            placeholder="Password"
+            type="password"
+            v-model="password"
+          />
+        </div>
+        <v-button
+          v-bind:generalError="generalError"
+          v-bind:isLoading="isLoading"
+          text="Submit"
+          type="submit"
+        />
+        <div class="mt-2 error-container">
+          <transition name="fade">
+            <div v-if="generalError" class="text-danger text-center">
+              {{ generalError }}
+            </div>
+          </transition>
+        </div>
+      </form>
+    </transition>
+    <div class="error-container">
+      <transition name="fade" appear>
+        <router-link v-if="!isLoading" class="noselect" to="/">
+          Back
+        </router-link>
       </transition>
     </div>
-  </form>
-  </transition>
-  <router-link class="mt-3" to="/">
-    Back
-  </router-link>
-</div>
+  </div>
 </template>
 
 <script>
   import axios from 'axios';
-  import ButtonWithLoader from '../../reusable/ButtonWithLoader';
+  import ButtonWithLoader from './ButtonWithLoader';
   import StyledInput from '../../reusable/StyledInput';
 
   export default {
@@ -87,6 +91,7 @@
             url: 'http://localhost:9000/api/login',
           });
           this.isLoading = false;
+          return this.$router.push('/dashboard');
         } catch (error) {
           this.emailStatus = '';
           this.generalError = 'Access denied!';
