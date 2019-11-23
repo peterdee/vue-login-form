@@ -1,5 +1,5 @@
 <template>
-  <form class="col-12" @submit="handleSubmit">
+  <form @submit="handleSubmit">
     <div class="form-group">
       <v-input
         v-bind:disabled="isLoading"
