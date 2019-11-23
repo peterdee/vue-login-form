@@ -12,28 +12,20 @@
 </template>
 
 <script>
-  import Vue from 'vue';
-
-  const { status } = this;
-  const vm = new Vue({
-    data: {
-      highlight: '',
-    },
-  });
-  if (status) {
-    switch (status) {
-      case 'valid':
-        vm.highlight = 'is-valid';
-        break;
-      case 'invalid':
-        vm.highlight = 'is-invalid';
-        break;
-      default:
-        vm.highlight = '';
-    }
-  }
-
   export default {
+    computed: {
+      highlight() {
+        const { status = '' } = this;
+        switch (status) {
+          case 'valid':
+            return 'is-valid';
+          case 'invalid':
+            return 'is-invalid';
+          default:
+            return '';
+        }
+      },
+    },
     name: "StyledInput",
     props: {
       disabled: {
