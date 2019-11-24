@@ -27,7 +27,7 @@ password: qwerty123
 
 Development:
 
-- `npm start`
+- `npm run serve`
 
 Stage / production:
 
