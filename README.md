@@ -1,16 +1,16 @@
 ## Login form with Vue
 
-[![Known Vulnerabilities](https://snyk.io/test/github/peterdee/vue-login-form-frontend/badge.svg?targetFile=package.json)](https://snyk.io/test/github/peterdee/vue-login-form-frontend?targetFile=package.json)
-
 [![Build Status](https://travis-ci.org/peterdee/vue-login-form-frontend.svg?branch=stage)](https://travis-ci.org/peterdee/vue-login-form-frontend)
+
+[![Known Vulnerabilities](https://snyk.io/test/github/peterdee/vue-login-form-frontend/badge.svg?targetFile=package.json)](https://snyk.io/test/github/peterdee/vue-login-form-frontend?targetFile=package.json)
 
 Backend project: [`vue-login-form-backend`](https://github.com/peterdee/vue-login-form-backend)
 
 Stack (frontend): [`Vue`](https://vuejs.org), [`Vue Router`](https://router.vuejs.org), [`Axios`](https://github.com/axios/axios), [`Bootstrap`](https://getbootstrap.com)
 
-DEV: http://localhost:8080
+**DEV**: http://localhost:8080
 
-STAGE: https://vue-login-form-frontend.herokuapp.com
+**STAGE**: https://vue-login-form-frontend.herokuapp.com
 
 Hardcoded user credentials:
 ```text
