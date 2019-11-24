@@ -1,12 +1,14 @@
 ## Login form with Vue
 
+[![Known Vulnerabilities](https://snyk.io/test/github/peterdee/vue-login-form-frontend/badge.svg?targetFile=package.json)](https://snyk.io/test/github/peterdee/vue-login-form-frontend?targetFile=package.json)
+
 Backend project: [`vue-login-form-backend`](https://github.com/peterdee/vue-login-form-backend)
 
 Stack (frontend): [`Vue`](https://vuejs.org), [`Vue Router`](https://router.vuejs.org), [`Axios`](https://github.com/axios/axios), [`Bootstrap`](https://getbootstrap.com)
 
 DEV: http://localhost:8080
 
-STAGE: *in progress* 
+STAGE: https://vue-login-form-frontend.herokuapp.com
 
 Hardcoded user credentials:
 ```text
@@ -25,7 +27,7 @@ password: qwerty123
 
 Development:
 
-- `npm run client`
+- `npm start`
 
 Stage / production:
 
@@ -33,4 +35,4 @@ Stage / production:
 
 ### Heroku
 
-*in progress*
+The `stage` branch is deployed to [Heroku](https://herokuapp.com) automatically

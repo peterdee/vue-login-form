@@ -27,6 +27,7 @@
 
   import Header from '../Header';
   import Loader from '../../reusable/Loader';
+  import origin from '../../config';
 
   export default {
     components: {
@@ -38,7 +39,7 @@
         this.isLoading = true;
         const { data: user = {} } = await axios({
           method: 'GET',
-          url: 'http://localhost:9000/api/dashboard',
+          url: `${origin}/api/dashboard`,
         });
         this.isLoading = false;
         return this.user = user.data; 
