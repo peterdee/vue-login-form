@@ -11,11 +11,14 @@
       <transition name="fade" appear>
         <div>
         <div class="greeting">
-          Hello, {{ user.name }}!
+          Posts
         </div>
         <small class="text-muted mt-2">
-          User name is loaded from the backend. Request performed on component mounting.
+          A list of posts is loaded from the backend. Request performed on component mounting.
         </small>
+        <div v-for="({ id, title }) in posts" v-bind:key="id">
+          <Post :id="id" :title="title" />
+        </div>
         </div>
       </transition>
     </div>
@@ -28,35 +31,34 @@
   import Header from '../Header';
   import Loader from '../../reusable/Loader';
   import origin from '../../config';
+  import Post from './Post';
 
   export default {
     components: {
       Header,
       Loader,
+      Post,
     },
     async mounted() {
       try {
         this.isLoading = true;
-        const { data: user = {} } = await axios({
+        const { data: posts = {} } = await axios({
           method: 'GET',
-          url: `${origin}/api/dashboard`,
+          url: `${origin}/api/posts`,
         });
         this.isLoading = false;
-        return this.user = user.data;
+        return this.posts = posts.data; 
       } catch (error) {
         this.isLoading = false;
-        return this.generalError = 'Error loading User data!';
+        return this.generalError = 'Error loading Posts!';
       }
     },
     data: () => ({
       generalError: '',
       isLoading: true,
-      user: {
-        email: '',
-        name: '',
-      },
+      posts: [],
     }),
-    name: "Dashboard",
+    name: "Posts",
   };
 </script>
 

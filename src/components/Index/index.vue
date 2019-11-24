@@ -1,5 +1,8 @@
 <template>
   <div class="centered">
+    <div class="logo">
+      <img src="../../assets/logo.png" alt="Logo" />
+    </div>
     <transition name="faded" appear>
       <div class="title">
         Learning Vue
@@ -36,6 +39,10 @@ export default { name: 'Index' };
 }
 .faded-enter, .faded-leave-to {
   opacity: 0;
+}
+.logo {
+  height: 50px;
+  width: 50px;
 }
 .title {
   font-size: 36px;
