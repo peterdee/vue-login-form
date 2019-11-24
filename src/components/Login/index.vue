@@ -49,8 +49,10 @@
 
 <script>
   import axios from 'axios';
+
   import ButtonWithLoader from './ButtonWithLoader';
   import StyledInput from '../../reusable/StyledInput';
+  import origin from '../../config';
 
   export default {
     components: {
@@ -88,7 +90,7 @@
               password,
             },
             method: 'POST',
-            url: 'http://localhost:9000/api/login',
+            url: `${origin}/api/login`,
           });
           this.isLoading = false;
           return this.$router.push('/dashboard');
