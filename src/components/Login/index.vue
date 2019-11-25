@@ -49,12 +49,23 @@
 
 <script>
   import axios from 'axios';
+  import { mapState } from 'vuex';
 
   import ButtonWithLoader from './ButtonWithLoader';
   import StyledInput from '../../reusable/StyledInput';
   import origin from '../../config';
 
   export default {
+    computed: {
+      ...mapState({
+        email: ({ login: { email = '' } }) => email,
+        emailStatus: ({ login: { emailStatus = '' } }) => emailStatus,
+        generalError: ({ login: { generalError = '' } }) => generalError,
+        isLoading: ({ login: { isLoading = false } }) => isLoading,
+        password: ({ login: { password = '' } }) => password,
+        passwordStatus: ({ login: { passwordStatus = '' } }) => passwordStatus,
+      }),
+    },
     components: {
       'v-button': ButtonWithLoader,
       'v-input': StyledInput,
@@ -66,7 +77,6 @@
       isLoading: false,
       password: '',
       passwordStatus: '',
-      passwordIsOk: false,
     }),
     methods: {
       async handleSubmit(e) {
@@ -93,13 +103,12 @@
             url: `${origin}/api/login`,
           });
           this.isLoading = false;
-          return this.$router.push('/dashboard');
+          return await this.$router.push('/dashboard');
         } catch (error) {
           this.emailStatus = '';
           this.generalError = 'Access denied!';
           this.isLoading = false;
           this.passwordStatus = '';
-          return;
         }
       },
     },

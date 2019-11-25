@@ -11,12 +11,12 @@
           <ul>
             <li>state management</li>
             <li>directives</li>
-            <li>components and component intractions</li>
+            <li>components and component interactions</li>
             <li>routing</li>
           </ul>
         </div>
         <div>
-          Total time spent on the project (both backend and frontend): <b>~16 hours</b>
+          Total time spent on the project (both backend and frontend): <b>~18 hours</b>
         </div>
         <div class="mt-3">
           Source code for the frontend project:
