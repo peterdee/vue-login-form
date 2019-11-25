@@ -6,7 +6,7 @@
 
 Backend project: [`vue-login-form-backend`](https://github.com/peterdee/vue-login-form-backend)
 
-Stack (frontend): [`Vue`](https://vuejs.org), [`Vue Router`](https://router.vuejs.org), [`Axios`](https://github.com/axios/axios), [`Bootstrap`](https://getbootstrap.com)
+Stack: [`Vue`](https://vuejs.org), [`Vue Router`](https://router.vuejs.org), [`Axios`](https://github.com/axios/axios), [`Bootstrap`](https://getbootstrap.com)
 
 **DEV**: http://localhost:8080
 
@@ -22,7 +22,7 @@ password: qwerty123
 
 - `git clone https://github.com/peterdee/vue-login-form-frontend`
 - `cd ./vue-login-form-frontend`
-- `nvm use 13.1` (please see the actual Node version in [package.json](package.json) file)
+- `nvm use 13.2` (please see the actual Node version in [package.json](package.json) file)
 - `npm i` (use `npm i --prod` for `stage` / `production`)
 
 ### Launch
