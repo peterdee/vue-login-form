@@ -48,15 +48,16 @@
 </template>
 
 <script>
-  import axios from 'axios';
-  import { mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   import ButtonWithLoader from './ButtonWithLoader';
   import StyledInput from '../../reusable/StyledInput';
-  import origin from '../../config';
 
   export default {
     computed: {
+      ...mapActions({
+        // TODO: map actions
+      }),
       ...mapState({
         email: ({ login: { email = '' } }) => email,
         emailStatus: ({ login: { emailStatus = '' } }) => emailStatus,
@@ -79,37 +80,9 @@
       passwordStatus: '',
     }),
     methods: {
-      async handleSubmit(e) {
+      handleSubmit(e) {
         e.preventDefault();
-        const { email, password } = this;
-        if (!(email && password)) {
-          this.generalError = 'Please provide your Email and Password!';
-          this.emailStatus = this.email ? 'valid' : 'invalid';
-          this.passwordStatus = this.password ? 'valid' : 'invalid';
-          return;
-        }
-
-        this.emailStatus = 'valid';
-        this.passwordStatus = 'valid';
-        this.isLoading = true;
-        
-        try {
-          await axios({
-            data: {
-              email,
-              password,
-            },
-            method: 'POST',
-            url: `${origin}/api/login`,
-          });
-          this.isLoading = false;
-          return await this.$router.push('/dashboard');
-        } catch (error) {
-          this.emailStatus = '';
-          this.generalError = 'Access denied!';
-          this.isLoading = false;
-          this.passwordStatus = '';
-        }
+        // TODO: run action
       },
     },
     name: "Login",

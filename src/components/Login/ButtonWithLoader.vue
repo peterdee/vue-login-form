@@ -1,9 +1,9 @@
 <template>
   <button
     class="btn btn-block"
-    v-bind:class="generalError ? 'btn-outline-danger' : 'btn-outline-success'"
-    v-bind:disabled="isLoading"
-    v-bind:type="type"
+    :class="generalError ? 'btn-outline-danger' : 'btn-outline-success'"
+    :disabled="isLoading"
+    :type="type"
   >
     <span v-if="isLoading" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" />
     {{ text }}
