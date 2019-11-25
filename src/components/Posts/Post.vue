@@ -1,6 +1,6 @@
 <template>
   <div class="mb-2">
-    <router-link :to="link">
+    <router-link class="link" :to="link">
       {{ title }}
     </router-link>
   </div>
@@ -28,3 +28,10 @@
     }
   };
 </script>
+
+<style scoped>
+.link {
+  font-size: 16px;
+  font-weight: 500;
+}
+</style>

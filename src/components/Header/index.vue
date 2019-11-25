@@ -59,6 +59,5 @@ a {
 .selected, .nav:hover {
   border-bottom: 2px solid rgb(108, 228, 255);
   transition: border-bottom-color 750ms;
-
 }
 </style>
