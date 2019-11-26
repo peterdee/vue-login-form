@@ -1,0 +1,1 @@
+export const POSTS_GET_POSTS = 'POSTS_GET_POSTS';

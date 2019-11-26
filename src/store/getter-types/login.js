@@ -1,0 +1,1 @@
+export const LOGIN_GET_VALUE = 'LOGIN_GET_VALUE';

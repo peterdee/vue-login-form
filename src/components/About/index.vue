@@ -9,14 +9,15 @@
         <div>
           I've created this project while learning the basics of Vue:
           <ul>
-            <li>state management</li>
+            <li>state management (within the component)</li>
             <li>directives</li>
-            <li>components and component intractions</li>
+            <li>components and component interactions</li>
             <li>routing</li>
+            <li>application state management with Vuex</li>
           </ul>
         </div>
         <div>
-          Total time spent on the project (both backend and frontend): <b>~16 hours</b>
+          Total time spent on the project (both backend and frontend): <b>~22 hours</b>
         </div>
         <div class="mt-3">
           Source code for the frontend project:
@@ -31,7 +32,7 @@
           <a href="https://github.com/peterdee/vue-login-form-backend">https://github.com/peterdee/vue-login-form-backend</a>
         </div>
         <div class="mt-3">
-          <b><a href="https://github.com/peterdee">Peter Dyumin</a>, 2019</b>
+          <b><a href="https://github.com/peterdee">Peter Dyumin</a>, {{ new Date().getFullYear() }}</b>
         </div>
       </div>
     </transition>

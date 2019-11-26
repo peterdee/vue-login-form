@@ -4,8 +4,8 @@
       <form class="col-12" @submit="handleSubmit">
         <div class="form-group">
           <v-input
-            v-bind:disabled="isLoading"
-            v-bind:status="emailStatus"
+            :disabled="isLoading"
+            :status="emailStatus"
             name="email"
             placeholder="Email"
             type="email"
@@ -14,8 +14,8 @@
         </div>
         <div class="form-group">
           <v-input
-            v-bind:disabled="isLoading"
-            v-bind:status="passwordStatus"
+            :disabled="isLoading"
+            :status="passwordStatus"
             name="password"
             placeholder="Password"
             type="password"
@@ -23,8 +23,8 @@
           />
         </div>
         <v-button
-          v-bind:generalError="generalError"
-          v-bind:isLoading="isLoading"
+          :generalError="generalError"
+          :isLoading="isLoading"
           text="Submit"
           type="submit"
         />
@@ -48,72 +48,64 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { mapActions, mapGetters, mapState } from 'vuex';
 
+  import * as actionTypes from '../../store/action-types/login';
   import ButtonWithLoader from './ButtonWithLoader';
+  import * as getterTypes from '../../store/getter-types/login';
   import StyledInput from '../../reusable/StyledInput';
-  import origin from '../../config';
 
   export default {
+    computed: {
+      ...mapState({
+        emailStatus: ({ login: { emailStatus = '' } }) => emailStatus,
+        generalError: ({ login: { generalError = '' } }) => generalError,
+        isLoading: ({ login: { isLoading = false } }) => isLoading,
+        passwordStatus: ({ login: { passwordStatus = '' } }) => passwordStatus,
+      }),
+      ...mapGetters({
+        getValue: getterTypes.LOGIN_GET_VALUE,
+      }),
+      email: {
+        get() {
+          return this.getValue('email');
+        },
+        set(value) {
+          return this.handleInput({
+            field: 'email',
+            type: actionTypes.LOGIN_HANDLE_INPUT,
+            value,
+          });
+        },
+      },
+      password: {
+        get() {
+          return this.getValue('password');
+        },
+        set(value) {
+          return this.handleInput({
+            field: 'password',
+            type: actionTypes.LOGIN_HANDLE_INPUT,
+            value,
+          });
+        },
+      },
+    },
     components: {
       'v-button': ButtonWithLoader,
       'v-input': StyledInput,
     },
-    data: () => ({
-      email: '',
-      emailStatus: '',
-      generalError: '',
-      isLoading: false,
-      password: '',
-      passwordStatus: '',
-      passwordIsOk: false,
-    }),
     methods: {
-      async handleSubmit(e) {
+      handleSubmit(e) {
         e.preventDefault();
-        const { email, password } = this;
-        if (!(email && password)) {
-          this.generalError = 'Please provide your Email and Password!';
-          this.emailStatus = this.email ? 'valid' : 'invalid';
-          this.passwordStatus = this.password ? 'valid' : 'invalid';
-          return;
-        }
-
-        this.emailStatus = 'valid';
-        this.passwordStatus = 'valid';
-        this.isLoading = true;
-        
-        try {
-          await axios({
-            data: {
-              email,
-              password,
-            },
-            method: 'POST',
-            url: `${origin}/api/login`,
-          });
-          this.isLoading = false;
-          return this.$router.push('/dashboard');
-        } catch (error) {
-          this.emailStatus = '';
-          this.generalError = 'Access denied!';
-          this.isLoading = false;
-          this.passwordStatus = '';
-          return;
-        }
+        return this.submitForm();
       },
+      ...mapActions({
+        handleInput: actionTypes.LOGIN_HANDLE_INPUT,
+        submitForm: actionTypes.LOGIN_SUBMIT_FORM,
+      }),
     },
     name: "Login",
-    watch: {
-      email() {
-        this.emailStatus = '';
-        this.generalError = '';
-      },
-      password() {
-        this.generalError = '';
-        this.passwordStatus = '';
-      },
-    },
   };
 </script>
 
