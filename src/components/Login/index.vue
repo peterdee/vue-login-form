@@ -4,8 +4,8 @@
       <form class="col-12" @submit="handleSubmit">
         <div class="form-group">
           <v-input
-            v-bind:disabled="isLoading"
-            v-bind:status="emailStatus"
+            :disabled="isLoading"
+            :status="emailStatus"
             name="email"
             placeholder="Email"
             type="email"
@@ -14,8 +14,8 @@
         </div>
         <div class="form-group">
           <v-input
-            v-bind:disabled="isLoading"
-            v-bind:status="passwordStatus"
+            :disabled="isLoading"
+            :status="passwordStatus"
             name="password"
             placeholder="Password"
             type="password"
@@ -23,8 +23,8 @@
           />
         </div>
         <v-button
-          v-bind:generalError="generalError"
-          v-bind:isLoading="isLoading"
+          :generalError="generalError"
+          :isLoading="isLoading"
           text="Submit"
           type="submit"
         />
@@ -48,54 +48,64 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapGetters, mapState } from 'vuex';
 
+  import * as actionTypes from '../../store/action-types/login';
   import ButtonWithLoader from './ButtonWithLoader';
+  import * as getterTypes from '../../store/getter-types/login';
   import StyledInput from '../../reusable/StyledInput';
 
   export default {
     computed: {
-      ...mapActions({
-        // TODO: map actions
-      }),
       ...mapState({
-        email: ({ login: { email = '' } }) => email,
         emailStatus: ({ login: { emailStatus = '' } }) => emailStatus,
         generalError: ({ login: { generalError = '' } }) => generalError,
         isLoading: ({ login: { isLoading = false } }) => isLoading,
-        password: ({ login: { password = '' } }) => password,
         passwordStatus: ({ login: { passwordStatus = '' } }) => passwordStatus,
       }),
+      ...mapGetters({
+        getValue: getterTypes.LOGIN_GET_VALUE,
+      }),
+      email: {
+        get() {
+          return this.getValue('email');
+        },
+        set(value) {
+          return this.handleInput({
+            field: 'email',
+            type: actionTypes.LOGIN_HANDLE_INPUT,
+            value,
+          });
+        },
+      },
+      password: {
+        get() {
+          return this.getValue('password');
+        },
+        set(value) {
+          return this.handleInput({
+            field: 'password',
+            type: actionTypes.LOGIN_HANDLE_INPUT,
+            value,
+          });
+        },
+      },
     },
     components: {
       'v-button': ButtonWithLoader,
       'v-input': StyledInput,
     },
-    data: () => ({
-      email: '',
-      emailStatus: '',
-      generalError: '',
-      isLoading: false,
-      password: '',
-      passwordStatus: '',
-    }),
     methods: {
       handleSubmit(e) {
         e.preventDefault();
-        // TODO: run action
+        return this.submitForm();
       },
+      ...mapActions({
+        handleInput: actionTypes.LOGIN_HANDLE_INPUT,
+        submitForm: actionTypes.LOGIN_SUBMIT_FORM,
+      }),
     },
     name: "Login",
-    watch: {
-      email() {
-        this.emailStatus = '';
-        this.generalError = '';
-      },
-      password() {
-        this.generalError = '';
-        this.passwordStatus = '';
-      },
-    },
   };
 </script>
 

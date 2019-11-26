@@ -6,7 +6,7 @@
 
 Backend project: [`vue-login-form-backend`](https://github.com/peterdee/vue-login-form-backend)
 
-Stack: [`Vue`](https://vuejs.org), [`Vue Router`](https://router.vuejs.org), [`Axios`](https://github.com/axios/axios), [`Bootstrap`](https://getbootstrap.com)
+Stack: [`Vue`](https://vuejs.org), [`Vuex`](https://vuex.vuejs.org/) [`Vue Router`](https://router.vuejs.org), [`Axios`](https://github.com/axios/axios), [`Bootstrap`](https://getbootstrap.com)
 
 **DEV**: http://localhost:8080
 

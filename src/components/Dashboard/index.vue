@@ -1,17 +1,19 @@
 <template>
   <div class="col-12">
     <Header />
-    <div v-if="isLoading">
+    <div v-if="this.isLoading">
       <transition name="loader" appear>
         <Loader />
       </transition>
     </div>
-    <div v-else-if="generalError">{{ generalError }}</div>
+    <div v-else-if="this.generalError">
+      <ErrorMessage :message="this.generalError" />
+    </div>
     <div v-else>
       <transition name="fade" appear>
         <div>
         <div class="greeting">
-          Hello, {{ user.name }}!
+          Hello, {{ this.user.name }}!
         </div>
         <small class="text-muted mt-2">
           User name is loaded from the backend. Request performed on component mounting.
@@ -23,39 +25,38 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { mapActions, mapState } from 'vuex';
 
+  import * as actionTypes from '../../store/action-types/dashboard';
+  import ErrorMessage from '../../reusable/ErrorMessage';
   import Header from '../Header';
   import Loader from '../../reusable/Loader';
-  import origin from '../../config';
 
   export default {
     components: {
+      ErrorMessage,
       Header,
       Loader,
     },
-    async mounted() {
-      try {
-        this.isLoading = true;
-        const { data: user = {} } = await axios({
-          method: 'GET',
-          url: `${origin}/api/dashboard`,
-        });
-        this.isLoading = false;
-        return this.user = user.data;
-      } catch (error) {
-        this.isLoading = false;
-        return this.generalError = 'Error loading User data!';
-      }
+    computed: {
+      ...mapState({
+        generalError: ({ dashboard }) => dashboard.generalError,
+        isLoading: ({ dashboard }) => dashboard.isLoading,
+        user: ({ dashboard }) => dashboard.user,
+      }),
     },
-    data: () => ({
-      generalError: '',
-      isLoading: true,
-      user: {
-        email: '',
-        name: '',
-      },
-    }),
+    created() {
+      return this.switchLoader({ isLoading: true });
+    },
+    methods: {
+      ...mapActions({
+        getUser: actionTypes.DASHBOARD_GET_USER,
+        switchLoader: actionTypes.DASHBOARD_SWITCH_LOADER,
+      }),
+    },
+    mounted() {
+      return this.getUser();
+    },
     name: "Dashboard",
   };
 </script>

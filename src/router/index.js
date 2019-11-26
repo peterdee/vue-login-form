@@ -11,6 +11,7 @@ import Posts from '../components/Posts';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       component: About,
@@ -18,9 +19,9 @@ export default new Router({
       path: '/about',
     },
     {
-      path: '/dashboard',
-      name: 'Dashboard',
       component: Dashboard,
+      name: 'Dashboard',
+      path: '/dashboard',
     },
     {
       component: Index,
@@ -28,19 +29,19 @@ export default new Router({
       path: '/',
     },
     {
-      path: '/login',
-      name: 'Login',
       component: Login,
+      name: 'Login',
+      path: '/login',
     },
     {
-      path: '/post/:id',
-      name: 'Post',
       component: Post,
+      name: 'Post',
+      path: '/post/:id',
     },
     {
-      path: '/posts',
-      name: 'Posts',
       component: Posts,
+      name: 'Posts',
+      path: '/posts',
     },
   ],
 });

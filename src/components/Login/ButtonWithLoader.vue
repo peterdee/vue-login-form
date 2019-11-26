@@ -5,7 +5,12 @@
     :disabled="isLoading"
     :type="type"
   >
-    <span v-if="isLoading" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" />
+    <span
+      v-if="isLoading"
+      class="spinner-border spinner-border-sm mr-2"
+      role="status"
+      aria-hidden="true"
+    ></span>
     {{ text }}
   </button>
 </template>

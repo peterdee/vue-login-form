@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Vuex from 'vuex'
+import Vuex from 'vuex';
 
 import dashboard from './modules/dashboard';
 import login from './modules/login';
