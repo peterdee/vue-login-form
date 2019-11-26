@@ -11,7 +11,7 @@ import Posts from '../components/Posts';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       component: About,
