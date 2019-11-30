@@ -9,7 +9,7 @@
             name="email"
             placeholder="Email"
             type="email"
-            v-model="email"
+            v-model.trim="email"
           />
         </div>
         <div class="form-group">
@@ -19,7 +19,7 @@
             name="password"
             placeholder="Password"
             type="password"
-            v-model="password"
+            v-model.trim="password"
           />
         </div>
         <v-button
