@@ -17,7 +17,7 @@
           </ul>
         </div>
         <div>
-          Total time spent on the project (both backend and frontend): <b>~22 hours</b>
+          Total time spent on the project (both backend and frontend): <b>~24 hours</b>
         </div>
         <div class="mt-3">
           Source code for the frontend project:

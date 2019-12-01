@@ -25,9 +25,10 @@
         <v-button
           :generalError="generalError"
           :isLoading="isLoading"
-          text="Submit"
           type="submit"
-        />
+        >
+          Submit
+        </v-button>
         <div class="mt-2 error-container">
           <transition name="fade">
             <div v-if="generalError" class="text-danger text-center">
