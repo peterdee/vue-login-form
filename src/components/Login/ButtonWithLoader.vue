@@ -11,7 +11,7 @@
       role="status"
       aria-hidden="true"
     ></span>
-    {{ text }}
+    <slot></slot>
   </button>
 </template>
 
@@ -33,11 +33,6 @@
         default: false,
         required: true,
         type: Boolean,
-      },
-      text: {
-        default: '',
-        required: true,
-        type: String,
       },
       type: {
         default: '',
